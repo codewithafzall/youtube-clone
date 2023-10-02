@@ -1,0 +1,27 @@
+/* Webkit-based browsers (Chrome, Safari) */
+/* You can use these pseudo-elements to style the scrollbar */
+
+/* Track */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c5c4c4; /* Color of the thumb */
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a9a9a9;
+  }
+  
+  /* Progress track in IE and Edge */
+  ::-ms-scrollbar-track {
+    background: #f0f0f0;
+  }
+  
+  /* Progress track in IE and Edge */
+  ::-ms-scrollbar-thumb {
+    background: #888;
+  }
+  
