@@ -5,4 +5,7 @@ export const SIDEBAR_ICON = "https://upload.wikimedia.org/wikipedia/commons/thum
 
 export const USER_ICON = "https://cdn-icons-png.flaticon.com/512/3177/3177440.png";
 
-export const SEARCH_ICON ="https://cdn-icons-png.flaticon.com/512/954/954591.png";
+export const GOOGLE_API_KEY = "AIzaSyCpfligX0nFhS4pWojgrsr_322RpKVVrE0";
+
+export const YOUTUBE_API =   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" + GOOGLE_API_KEY;
+
