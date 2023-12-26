@@ -3,7 +3,6 @@ import { YOUTUBE_API } from '../utils/constants';
 import VideoCard from './VideoCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { closeSidebar } from '../utils/appSlice';
 
 const VideoContainer = () => {
 

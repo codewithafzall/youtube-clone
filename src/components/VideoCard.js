@@ -8,7 +8,7 @@ const VideoCard = ({info}) => {
     const {viewCount , likeCount} = statistics;
 
     const isSideBar = useSelector((store)=>store.app.isSideBar);
-     
+
 
   return (
     <div>
