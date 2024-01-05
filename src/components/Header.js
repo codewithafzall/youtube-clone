@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { LOGO, SEARCH_SUGGESTIONS, SIDEBAR_ICON, USER_ICON } from "../utils/constants";
+import { GOOGLE_API_KEY, LOGO, SEARCH_SUGGESTIONS, SIDEBAR_ICON, USER_ICON } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../utils/appSlice";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,13 +20,17 @@ const Header = () => {
       return()=>{
         clearTimeout(timer)
       }
-  },[searchQuery])
+  },[searchQuery]);
+
+  const handleSearch = (searchText)=>{
+     setSearchQuery(searchText);
+     navigate(`/search?q=${encodeURIComponent(searchText)}`);
+  };
 
   const getSearchSuggestions = async () => {
     try {
       const data = await fetch(SEARCH_SUGGESTIONS + searchQuery);
       const json = await data.json();
-      console.log(json);
       setSearchSuggestions(json[1]);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -35,45 +39,50 @@ const Header = () => {
 
   return (
     <div className="fixed w-full bg-white z-10">
-      <div className="flex justify-between px-5 py-4">
+      <div className="flex w-full justify-between px-1 py-4 md:px-5 md:py-4">
         <div className="flex mt-2">
           <img
             onClick={handleSidebar}
-            className="w-7 h-7 cursor-pointer hover:scale-105"
+            className="w-6 h-6 md:w-7 md:h-7 cursor-pointer hover:scale-105"
             alt="sidebar_icon"
             src={SIDEBAR_ICON}
           />
           <img
             onClick={() => navigate("/")}
-            className="w-32 h-7 ml-4"
+            className="w-[5rem] h-6 ml-2 md:w-32 md:h-7 md:ml-4"
             alt="youtube_logo"
             src={LOGO}
           />
         </div>
-        <div className="flex items-center">
-      <input
-        className="border-2 py-1 h-10 pl-6 w-[500px] rounded-l-full text-md"
-        type="text"
-        placeholder="Please turn on CORS extension"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-          {searchSuggestions && (
-            <div className="absolute bg-white rounded-md mt-1 w-[500px] shadow-lg top-14">
-            {searchSuggestions.map((item,index)=>{
-             return(
-              <ul>
-                <li className="p-2" key={index}><SearchIcon/><span className="ps-2">{item}</span></li>
-              </ul>)
-            })}
-          </div>
-          )}
-      <button className="bg-gray-100 rounded-r-full py-1 h-10 px-4 border-2 border-l-0">
-        <SearchIcon />
-      </button>
+        <div className="flex items-center md:mt-1">
+        <div className="relative">
+  <input
+    className="border-2 pl-8 text-xs py-1 h-10 md:pl-10 w-full md:w-[500px] rounded-full md:text-sm"
+    type="text"
+    placeholder="Search...."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+  />
+  <div className="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+    <SearchIcon />
+  </div>
+  {searchSuggestions && (
+    <div className="absolute bg-white rounded-md mt-1 md:w-[500px] shadow-lg md:top-14">
+      {searchSuggestions.map((item, index) => (
+        <ul>
+          <li onClick={() => handleSearch(item)} className="flex p-2 cursor-pointer" key={index}>
+            <SearchIcon />
+            <span className="ps-2">{item}</span>
+          </li>
+        </ul>
+      ))}
+    </div>
+  )}
+</div>
+
     </div>
         <div>
-          <img className="w-10 h-10" alt="user_icon" src={USER_ICON} />
+          <img className="w-8 h-8 mt-1 md:w-10 md:h-10" alt="user_icon" src={USER_ICON} />
         </div>
       </div>
     </div>

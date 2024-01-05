@@ -17,11 +17,14 @@ const ButtonList = () => {
         "Travel",
         "Fitness",
         "Beauty",
+        "Coding",
+        "Fun",
+        "Knowledge"
       ];
       
 
   return (
-    <div className='flex ml-2 mt-1'>
+    <div className='flex ml-2 mt-1 overflow-x-scroll scrollbar-hidden'>
       {list.map((item)=>(<Button key={item} name={item} />))}
     </div>
   )

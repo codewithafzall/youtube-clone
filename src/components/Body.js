@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './Sidebar';
 import MainContainer from './MainContainer';
-import { Outlet } from 'react-router-dom';
+import SearchResults from './SearchResults';
 
 const Body = () => {
   return (

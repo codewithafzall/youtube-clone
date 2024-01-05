@@ -5,6 +5,7 @@ import Header from './components/Header';
 import store from './utils/appStore';
 import { BrowserRouter, Routes , Route } from 'react-router-dom';
 import WatchPage from './components/WatchPage';
+import SearchResults from './components/SearchResults';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
          <Routes>     
             <Route path="/" element={<Body/>}/>
             <Route path="/watch" element={<WatchPage/>}/>
+            <Route path="/search" element={<SearchResults/>}/>
          </Routes>
       </BrowserRouter>
     

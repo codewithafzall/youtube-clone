@@ -9,8 +9,8 @@ const MainContainer = () => {
 
 
   return (
-    <div className={isSideBar?"ml-64 mt-20" : "ml-0 mt-20"}>
-      <ButtonList/>
+    <div className={isSideBar?"ml-0 md:ml-64 mt-20 overflow-x-scroll scrollbar-hidden" : "ml-0 mt-20 overflow-x-scroll scrollbar-hidden"}>
+       <ButtonList/>
       <VideoContainer/>
       </div>
   )
