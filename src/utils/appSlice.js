@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const appSlice = createSlice({
     name : "app",
     initialState : {
-        isSideBarOpen : true,
+        isSideBarOpen : false,
     },
     reducers :{
       toggleSidebar : (state)=>{

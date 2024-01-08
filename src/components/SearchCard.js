@@ -8,7 +8,7 @@ const SearchCard = ({info}) => {
 
   return (
     <div className='flex flex-col md:flex-row py-2 md:py-6 overflow-hidden'>
-      <img src={thumbnails.medium.url} alt={title} className=" w-screen md:w-auto md:h-52 object-cover md:rounded-lg" />
+      <img src={thumbnails.medium.url} alt={title} className=" w-screen md:w-auto md:h-52 object-cover md:nrounded-lg" />
       <div className='w-screen md:w-[70%]'>
       <h1 className="text-xl mx-4 mt-2 font-semibold md:overflow-hidden line-clamp-2">{title}</h1>
       <div className='flex items-center ml-4'>

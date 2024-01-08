@@ -7,7 +7,7 @@ const VideoCard = ({info}) => {
     const {snippet , statistics} = info ;
     const {thumbnails, title , channelTitle } = snippet;
     const {viewCount , likeCount} = statistics;
-    const [formatNumber] = UseFormatNumbers();
+    const formatNumber = UseFormatNumbers();
     const isSideBar = useSelector((store)=>store.app.isSideBar);
     const views = formatNumber(viewCount);
     const likes = formatNumber(likeCount);

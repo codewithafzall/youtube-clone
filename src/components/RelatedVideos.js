@@ -6,7 +6,7 @@ const RelatedVideos = ({info}) => {
     const {snippet,statistics} = info ;
     const {thumbnails, title , channelTitle } = snippet;
     const {likeCount,viewCount} = statistics;
-    const [formatNumber] = UseFormatNumbers();
+    const formatNumber  = UseFormatNumbers();
     const views = formatNumber(viewCount);
     const likes = formatNumber(likeCount);
 

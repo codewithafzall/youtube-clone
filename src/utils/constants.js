@@ -9,6 +9,6 @@ export const GOOGLE_API_KEY = "AIzaSyBcTogavvOtoizG9SEHNkjrtkE26ykGB5E";
 
 export const YOUTUBE_API =   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=200&regionCode=IN&key=" + GOOGLE_API_KEY;
 
-export const SEARCH_SUGGESTIONS = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="
+export const SEARCH_SUGGESTIONS = "http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q="
 
 

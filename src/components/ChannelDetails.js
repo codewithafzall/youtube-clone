@@ -7,7 +7,7 @@ const ChannelDetails = ({data}) => {
     const [expanded, setExpanded] = useState(false);
     const [subscribe, setSubscribe] = useState(false);
     const [like, setLike] = useState(false);
-    const [formatNumber] = UseFormatNumbers();
+    const formatNumber  = UseFormatNumbers();
 
     if (!data || !data.snippet) {
         return null;

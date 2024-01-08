@@ -50,7 +50,7 @@ const WatchPage = () => {
             allowFullScreen
            ></iframe>
            <ChannelDetails id={id} data={videoData}/>
-           {/* <Comments id={id}/> */}
+           <Comments id={id}/>
         </div>
         <div className="w-screen md:w-5/12 md:overflow-hidden md:pr-4 pt-5 md:pt-[5.5rem]">
         {videos?.map((item)=>
