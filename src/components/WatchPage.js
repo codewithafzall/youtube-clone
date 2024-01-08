@@ -9,7 +9,8 @@ import ChannelDetails from "./ChannelDetails";
 import RelatedVideos from "./RelatedVideos";
 
 const WatchPage = () => {
-
+  
+  const [state,setState] =useState(true);
   const [videoData , setVideoData] = useState([]);
   const [videos, setVideos] = useState([]);
   const [params] = useSearchParams();
@@ -32,7 +33,7 @@ const WatchPage = () => {
   useEffect(()=>{
     getVideoData();
     fetchVideos();
-  },[]);
+  },[state]);
  
   useEffect(()=>{
     dispatch(closeSidebar());
@@ -52,7 +53,7 @@ const WatchPage = () => {
            <ChannelDetails id={id} data={videoData}/>
            <Comments id={id}/>
         </div>
-        <div className="w-screen md:w-5/12 md:overflow-hidden md:pr-4 pt-5 md:pt-[5.5rem]">
+        <div onClick={()=>setState(!state)} className="w-screen md:w-5/12 md:overflow-hidden md:pr-4 pt-5 md:pt-[5.5rem]">
         {videos?.map((item)=>
             <Link key={item.id} to={"/watch?v="+ item.id}>
                 <RelatedVideos key={item.id} info={item}/>
