@@ -7,19 +7,21 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import HistoryIcon from '@mui/icons-material/History';
 import SportsCricketIcon from '@mui/icons-material/SportsCricket';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { closeSidebarMobile } from '../utils/appSlice';
 
 const Sidebar = () => {
 
   const isSideBar = useSelector((store) => store.app.isSideBarOpen);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
  
   if (!isSideBar) {
     return null;
   }
   return (
-    <div className=' bg-white mt-16 md:mt-[4.5rem] overflow-y-scroll fixed z-20 md:h-[calc(100vh-90px)]' >
+    <div onClick={()=>dispatch(closeSidebarMobile())} className=' bg-white mt-16 md:mt-[4.5rem] overflow-y-scroll fixed z-20 md:h-[calc(100vh-90px)]' >
 
       <div className='border-b-2 w-full'>
        <button onClick={()=>navigate("/")} className=' w-60 rounded-lg py-3 flex justify-center -ml-10 hover:bg-gray-200 text-md'><HomeIcon/><span className='ml-4 w-24 text-left'>Home</span></button>

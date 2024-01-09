@@ -23,16 +23,29 @@ const WatchPage = () => {
     setVideoData(json.items[0]);
   };
 
-  const fetchVideos = async ()=>{
-    const data = await fetch(YOUTUBE_API);
-    const json = await data.json();
-    console.log(json);
-    setVideos(json?.items);
-};
+  const getRelatedVideos = async ()=>{
+    const url = `https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=${id}&part=snippet%2CcontentDetails%2Cstatistics&type=video&maxResults=50`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': 'e6c0051900msh49cd0b4d8a9f386p1fc846jsnfcb35b1a4b75',
+        'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
+      }
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log("afzal",result.items);
+      setVideos(result.items)
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(()=>{
     getVideoData();
-    fetchVideos();
+    getRelatedVideos();
   },[state]);
  
   useEffect(()=>{
@@ -55,7 +68,7 @@ const WatchPage = () => {
         </div>
         <div onClick={()=>setState(!state)} className="w-screen md:w-5/12 md:overflow-hidden md:pr-4 pt-5 md:pt-[5.5rem]">
         {videos?.map((item)=>
-            <Link key={item.id} to={"/watch?v="+ item.id}>
+            <Link key={item.id} to={"/watch?v="+ item.id.videoId}>
                 <RelatedVideos key={item.id} info={item}/>
             </Link>
             )}

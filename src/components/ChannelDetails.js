@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { USER_ICON } from '../utils/constants';
-import { RingVolume, Share, ThumbUp } from '@mui/icons-material';
+import { Share, ThumbUp } from '@mui/icons-material';
 import UseFormatNumbers from '../utils/UseFormatNumbers';
 
 const ChannelDetails = ({data}) => {
