@@ -12,7 +12,7 @@ const SearchResults = () => {
     const [videos,setVideos] = useState([]);
     const [params] = useSearchParams();
     const query = params.get("q");
-    const SEARCH_QUERY = `https://www.googleapis.com/youtube/v3/search?maxResults=25&part=snippet&statistics&chart=mostPopular&q=${query}&key=${GOOGLE_API_KEY}`;
+    const SEARCH_QUERY = `https://www.googleapis.com/youtube/v3/search?maxResults=50&part=snippet&statistics&chart=mostPopular&q=${query}&key=${GOOGLE_API_KEY}`;
 
      const searchVideos = async ()=>{
         try{
@@ -26,7 +26,7 @@ const SearchResults = () => {
 
      useEffect(()=>{
         searchVideos();
-     },[]);
+     },[query]);
 
   return (
     <div className='flex'>

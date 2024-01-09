@@ -71,7 +71,7 @@ const ChannelDetails = ({data}) => {
             </button>
           )}
         </div>
-        <h1 className='font-semibold text-2xl mt-4'>{commentCounter} Comments</h1>
+        <h1 className='font-semibold text-2xl mt-4 ml-2'>{commentCounter} Comments</h1>
     </div>
   )
 }

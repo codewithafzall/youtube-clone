@@ -21,7 +21,7 @@ const VideoContainer = () => {
 
   return (
     <div className={isSideBar ? 'mt-7 px-1 grid grid-cols-1 md:grid-cols-3' : 'mt-7 md:px-5 grid grid-cols-1 md:grid-cols-4'}>
-    {videos.map((item)=>
+    {videos?.map((item)=>
     <Link key={item.id} to={"/watch?v="+ item.id}>
     <VideoCard key={item.id} info={item}/>
     </Link>

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../utils/appSlice";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,24 +17,42 @@ const Header = () => {
   };
 
   useEffect(()=>{ 
-       const timer = setTimeout(()=>getSearchSuggestions(),300);
+       const timer = setTimeout(()=>getSearchSuggestions(),200);
       return()=>{
         clearTimeout(timer)
       }
   },[searchQuery]);
 
   const handleSearch = (searchText)=>{
-     setSearchQuery(searchText);
-     navigate(`/search?q=${encodeURIComponent(searchText)}`);
-  };
+    setSearchQuery(searchText);
+    navigate(`/search?q=${encodeURIComponent(searchText)}`);
+    setSearchQuery("");
+    setSearchSuggestions([]);
+ }; 
+
 
   const getSearchSuggestions = async () => {
+
+    if (!searchQuery) {
+      setSearchSuggestions([]);
+      return;
+    }
+       
+    const options = {
+      method: 'GET',
+      url: 'https://auto-suggest-queries.p.rapidapi.com/suggestqueries',
+      params: {query: searchQuery},
+      headers: {
+        'X-RapidAPI-Key': 'e6c0051900msh49cd0b4d8a9f386p1fc846jsnfcb35b1a4b75',
+        'X-RapidAPI-Host': 'auto-suggest-queries.p.rapidapi.com'
+      }
+    };
+    
     try {
-      const data = await fetch(SEARCH_SUGGESTIONS + searchQuery);
-      const json = await data.json();
-      setSearchSuggestions(json[1]);
+      const response = await axios.request(options);
+      setSearchSuggestions(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error(error);
     }
   };
 
@@ -67,12 +86,12 @@ const Header = () => {
     <SearchIcon />
   </div>
   {searchSuggestions && (
-    <div className="absolute bg-white rounded-md mt-1 md:w-[500px] shadow-lg md:top-14">
+    <div className="absolute bg-white rounded-md mt-1 md:w-[500px] shadow-lg md:top-10">
       {searchSuggestions.map((item, index) => (
         <ul>
-          <li onClick={() => handleSearch(item)} className="flex p-2 cursor-pointer" key={index}>
+          <li key={index} onClick={() => handleSearch(item)} className="flex p-2 cursor-pointer">
             <SearchIcon />
-            <span className="ps-2">{item}</span>
+            <span key={index} className="ps-2">{item}</span>
           </li>
         </ul>
       ))}
